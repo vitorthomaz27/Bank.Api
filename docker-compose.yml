@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  bank-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    environment:
+      - ConnectionStrings__DefaultConnection="Server=LAPTOP-U1J53KDF;Database=BankingDb;Trusted_Connection=True;TrustServerCertificate=True;"
+    networks:
+      - bank-network
+
+
+
+networks:
+  bank-network:
+    driver: bridge
+
+volumes:
+  sql-data:
